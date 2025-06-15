@@ -242,7 +242,7 @@
       width: 100%;
     }
 
-    /* ✅ Responsivo para telas menores */
+    /* Responsivo corrigido */
     @media (max-width: 600px) {
       body {
         padding: 16px 10px;
@@ -268,8 +268,15 @@
       }
 
       .action-box {
-        min-width: 100%;
+        width: 100%;
+        min-width: unset;
         padding: 24px 16px;
+        margin-bottom: 16px;
+      }
+
+      .button-group {
+        flex-direction: column;
+        gap: 0;
       }
 
       .action-title {
