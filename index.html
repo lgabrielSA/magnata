@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Double I.A Premium</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
   <style>
     :root {
       --primary: #00ffcc;
@@ -15,7 +15,7 @@
       --dark-bg: #111;
       --soft-bg: #1a1a1a;
       --light-text: #f5f5f5;
-      --dim-text: #cccccc;
+      --dim-text: #ccc;
     }
 
     body {
@@ -47,7 +47,7 @@
       border-radius: 14px;
       font-size: 15px;
       margin-bottom: 40px;
-      box-shadow: 0 0 15px rgb(0, 0, 0);
+      box-shadow: 0 0 15px #000;
     }
 
     .box {
@@ -64,7 +64,7 @@
 
     .ia-title {
       font-size: 26px;
-      font-weight: bold;
+      font-weight: 700;
       color: var(--primary);
       margin-bottom: 30px;
       text-shadow: 0 0 15px rgba(13, 161, 154, 0.877);
@@ -94,10 +94,10 @@
       border: none;
       border-radius: 14px;
       font-size: 16px;
-      font-weight: bold;
-      color: black;
+      font-weight: 700;
+      color: #000;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: 0.3s ease;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -149,7 +149,7 @@
       display: none;
       font-size: 18px;
       margin-top: 10px;
-      font-weight: bold;
+      font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
       opacity: 0;
@@ -167,11 +167,12 @@
       align-items: center;
     }
 
-    .next-round, .optional-text {
+    .next-round,
+    .optional-text {
       display: none;
       margin-top: 15px;
       font-size: 16px;
-      font-weight: bold;
+      font-weight: 700;
       text-align: center;
       background: linear-gradient(to right, var(--primary), var(--primary-light));
       -webkit-background-clip: text;
@@ -194,18 +195,18 @@
       border-radius: 16px;
       padding: 30px 20px;
       text-align: center;
-      box-shadow: 0 0 15px rgb(0, 0, 0);
+      box-shadow: 0 0 15px #000;
     }
 
     .action-title {
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 700;
       margin-bottom: 10px;
     }
 
     .action-subtext {
       font-size: 14px;
-      color: #ffff66;
+      color: #ff6;
       margin-bottom: 20px;
     }
 
@@ -214,10 +215,10 @@
       padding: 16px;
       border-radius: 10px;
       font-size: 16px;
-      font-weight: bold;
+      font-weight: 700;
       border: none;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: 0.3s ease;
     }
 
     .blaze-button {
@@ -242,7 +243,6 @@
       width: 100%;
     }
 
-    /* Responsivo corrigido */
     @media (max-width: 600px) {
       body {
         padding: 16px 10px;
@@ -319,29 +319,13 @@
     <div class="ia-title">🤖 Inteligência Artificial Ativada 🤖</div>
 
     <div class="data-boxes">
-      <div class="data-box">
-        GALES<br><span id="galesValue">--</span>
-        <div id="optionalText" class="optional-text">SEM GALE OU G1 (OPCIONAL)</div>
-      </div>
-
-      <div class="data-box">
-        APOSTE NO<br><span id="apostarValue">--</span>
-        <div class="apostar-container">
-          <div id="statusCircle" class="status-circle"></div>
-          <div id="statusText" class="status-text"></div>
-        </div>
-      </div>
-
-      <div class="data-box">
-        ENTRADA<br><span id="entradaValue">--</span>
-        <div id="nextRoundText" class="next-round">ENTRE NA PRÓXIMA RODADA!</div>
-      </div>
+      <div class="data-box">GALES<br><span id="galesValue">--</span><div id="optionalText" class="optional-text">SEM GALE OU G1 (OPCIONAL)</div></div>
+      <div class="data-box">APOSTE NO<br><span id="apostarValue">--</span><div class="apostar-container"><div id="statusCircle" class="status-circle"></div><div id="statusText" class="status-text"></div></div></div>
+      <div class="data-box">ENTRADA<br><span id="entradaValue">--</span><div id="nextRoundText" class="next-round">ENTRE NA PRÓXIMA RODADA!</div></div>
     </div>
 
     <button class="identify-button pulsing" id="identifyButton" onclick="showLoading()">
-      <div class="loading-spinner" id="spinner" style="display: none;">
-        <i class="fas fa-spinner fa-spin"></i>
-      </div>
+      <div class="loading-spinner" id="spinner" style="display:none;"><i class="fas fa-spinner fa-spin"></i></div>
       <span id="button-text">🎲 IDENTIFICAR RESULTADO</span>
     </button>
   </div>
@@ -350,16 +334,16 @@
     <div class="action-box">
       <div class="action-title">ABRA A SEUBET</div>
       <div class="action-subtext">Clique no botão abaixo para abrir a nossa plataforma de confiança!</div>
-      <button class="action-button blaze-button"><a href="https://seu.bet.br/affiliates/?btag=2439633" target="_blank" rel="noopener noreferrer">ABRIR A SEUBET</a></button>
+      <button class="action-button blaze-button">
+        <a href="https://seu.bet.br/affiliates/?btag=2439633" target="_blank" rel="noopener noreferrer">ABRIR A SEUBET</a>
+      </button>
     </div>
 
     <div class="action-box">
       <div class="action-title">SUPORTE</div>
       <div class="action-subtext">Ficou com alguma dúvida e precisa de suporte? Clique no botão abaixo.</div>
       <button class="action-button support-button">
-        <a href="http://telegram.me/magnataoficial" target="_blank" rel="noopener noreferrer">
-          FALAR COM O SUPORTE
-        </a>
+        <a href="http://telegram.me/magnataoficial" target="_blank" rel="noopener noreferrer">FALAR COM O SUPORTE</a>
       </button>
     </div>
   </div>
@@ -376,44 +360,42 @@
         minute: '2-digit',
         second: '2-digit'
       };
-      const horarioFormatado = new Intl.DateTimeFormat('pt-BR', opcoes).format(agora);
-      document.getElementById('br-time').textContent = horarioFormatado.replace(',', ' |');
+      const formatter = new Intl.DateTimeFormat('pt-BR', opcoes);
+      const horaFormatada = formatter.format(agora);
+      document.getElementById('br-time').textContent = horaFormatada.replace(',', ' |');
     }
 
     function showLoading() {
       const button = document.getElementById('identifyButton');
-      const buttonText = document.getElementById('button-text');
+      const text = document.getElementById('button-text');
       const spinner = document.getElementById('spinner');
       const statusCircle = document.getElementById('statusCircle');
       const statusText = document.getElementById('statusText');
-      const nextRoundText = document.getElementById('nextRoundText');
-      const optionalText = document.getElementById('optionalText');
+      const nextRound = document.getElementById('nextRoundText');
+      const optional = document.getElementById('optionalText');
+      const gales = document.getElementById('galesValue');
+      const apostar = document.getElementById('apostarValue');
+      const entrada = document.getElementById('entradaValue');
 
-      const galesValue = document.getElementById('galesValue');
-      const apostarValue = document.getElementById('apostarValue');
-      const entradaValue = document.getElementById('entradaValue');
-
-      button.classList.remove("pulsing");
+      button.classList.remove('pulsing');
       button.disabled = true;
-      buttonText.textContent = 'BUSCANDO ENTRADA...';
+      text.textContent = 'BUSCANDO ENTRADA...';
       spinner.style.display = 'inline-block';
 
       statusCircle.style.display = 'none';
       statusText.style.display = 'none';
-      nextRoundText.style.display = 'none';
-      optionalText.style.display = 'none';
-
-      galesValue.textContent = '';
-      apostarValue.textContent = '';
-      entradaValue.textContent = '';
+      nextRound.style.display = 'none';
+      optional.style.display = 'none';
+      gales.textContent = '';
+      apostar.textContent = '';
+      entrada.textContent = '';
 
       setTimeout(() => {
         const isBlue = Math.random() > 0.5;
-
         statusCircle.style.display = 'block';
         statusText.style.display = 'block';
-        nextRoundText.style.display = 'block';
-        optionalText.style.display = 'block';
+        nextRound.style.display = 'block';
+        optional.style.display = 'block';
 
         if (isBlue) {
           statusCircle.style.backgroundColor = '#1e90ff';
@@ -426,17 +408,17 @@
         }
 
         let count = 60;
-        buttonText.textContent = `AGUARDE (${count})`;
+        text.textContent = `AGUARDE (${count})`;
         spinner.style.display = 'none';
 
         const interval = setInterval(() => {
           count--;
-          buttonText.textContent = `AGUARDE (${count})`;
+          text.textContent = `AGUARDE (${count})`;
           if (count <= 0) {
             clearInterval(interval);
             button.disabled = false;
-            buttonText.textContent = '⚡ IDENTIFICAR RESULTADO';
-            button.classList.add("pulsing");
+            text.textContent = '⚡ IDENTIFICAR RESULTADO';
+            button.classList.add('pulsing');
           }
         }, 1000);
       }, 4000);
