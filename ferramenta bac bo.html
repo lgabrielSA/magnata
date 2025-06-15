@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Double I.A Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00ffcc;
+      --primary-light: #00ccff;
+      --danger: #d60028;
+      --support: #0066ff;
+      --dark-bg: #111;
+      --soft-bg: #1a1a1a;
+      --light-text: #f5f5f5;
+      --dim-text: #cccccc;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom, #0a0a0a, #151515);
+      color: var(--light-text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .logo {
+      margin-top: 30px;
+      margin-bottom: 35px;
+    }
+
+    .logo img {
+      width: 160px;
+      height: auto;
+      border-radius: 50%;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+    }
+
+    .timestamp {
+      background-color: #1f1f1f;
+      padding: 10px 22px;
+      border-radius: 14px;
+      font-size: 15px;
+      margin-bottom: 40px;
+      box-shadow: 0 0 15px rgb(0, 0, 0);
+    }
+
+    .box {
+      background-color: var(--dark-bg);
+      border-radius: 20px;
+      padding: 35px;
+      width: 100%;
+      max-width: 720px;
+      box-sizing: border-box;
+      text-align: center;
+      margin-bottom: 40px;
+      box-shadow: 0 0 25px rgba(1, 163, 149, 0.274);
+    }
+
+    .ia-title {
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 30px;
+      text-shadow: 0 0 15px rgba(13, 161, 154, 0.877);
+    }
+
+    .data-boxes {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .data-box {
+      background-color: #1e1e1e;
+      flex: 1;
+      padding: 25px 10px;
+      border-radius: 16px;
+      font-size: 14px;
+      color: var(--dim-text);
+      text-align: center;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .identify-button {
+      background: linear-gradient(to right, var(--primary), var(--primary-light));
+      width: 100%;
+      padding: 20px;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      color: black;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .identify-button:hover {
+      box-shadow: 0 0 18px rgba(0, 255, 204, 0.6);
+      transform: scale(1.02);
+    }
+
+    .identify-button.pulsing {
+      animation: pulse 0.4s infinite ease-in-out;
+    }
+
+    .identify-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+
+    .loading-spinner {
+      position: absolute;
+      left: 20px;
+    }
+
+    .status-circle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-top: 15px;
+      background-color: #cc1f1a;
+      transform: scale(0);
+      animation: circleAppear 0.8s ease-out forwards;
+    }
+
+    @keyframes circleAppear {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    .status-text {
+      display: none;
+      font-size: 18px;
+      margin-top: 10px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: textAppear 0.5s ease-out 0.5s forwards;
+    }
+
+    @keyframes textAppear {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .apostar-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .next-round, .optional-text {
+      display: none;
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      background: linear-gradient(to right, var(--primary), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .action-box {
+      flex: 1;
+      min-width: 300px;
+      background-color: var(--dark-bg);
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 0 15px rgb(0, 0, 0);
+    }
+
+    .action-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .action-subtext {
+      font-size: 14px;
+      color: #ffff66;
+      margin-bottom: 20px;
+    }
+
+    .action-button {
+      width: 100%;
+      padding: 16px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .blaze-button {
+      background-color: var(--danger);
+      color: white;
+    }
+
+    .support-button {
+      background: linear-gradient(to right, var(--support), var(--primary-light));
+      color: white;
+    }
+
+    .action-button:hover {
+      opacity: 0.9;
+      transform: scale(1.03);
+    }
+
+    .action-button a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      width: 100%;
+    }
+
+    /* ✅ Responsivo para telas menores */
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .data-boxes {
+        flex-direction: column;
+      }
+
+      .action-box {
+        min-width: 100%;
+      }
+
+      .logo img {
+        width: 40vw;
+        max-width: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="imagens/magnata.png" alt="Logo" />
+  </div>
+
+  <div class="timestamp" id="br-time">Carregando...</div>
+
+  <div class="box">
+    <div class="ia-title">🤖 Inteligência Artificial Ativada 🤖</div>
+
+    <div class="data-boxes">
+      <div class="data-box">
+        GALES<br><span id="galesValue">--</span>
+        <div id="optionalText" class="optional-text">SEM GALE OU G1 (OPCIONAL)</div>
+      </div>
+
+      <div class="data-box">
+        APOSTE NO<br><span id="apostarValue">--</span>
+        <div class="apostar-container">
+          <div id="statusCircle" class="status-circle"></div>
+          <div id="statusText" class="status-text"></div>
+        </div>
+      </div>
+
+      <div class="data-box">
+        ENTRADA<br><span id="entradaValue">--</span>
+        <div id="nextRoundText" class="next-round">ENTRE NA PRÓXIMA RODADA!</div>
+      </div>
+    </div>
+
+    <button class="identify-button pulsing" id="identifyButton" onclick="showLoading()">
+      <div class="loading-spinner" id="spinner" style="display: none;">
+        <i class="fas fa-spinner fa-spin"></i>
+      </div>
+      <span id="button-text">🎲 IDENTIFICAR RESULTADO</span>
+    </button>
+  </div>
+
+  <div class="button-group">
+    <div class="action-box">
+      <div class="action-title">ABRA A SEUBET</div>
+      <div class="action-subtext">Clique no botão abaixo para abrir a nossa plataforma de confiança!</div>
+      <button class="action-button blaze-button"><a href="https://seu.bet.br/affiliates/?btag=2439633" target="_blank" rel="noopener noreferrer">ABRIR A SEUBET</a></button>
+    </div>
+
+    <div class="action-box">
+      <div class="action-title">SUPORTE</div>
+      <div class="action-subtext">Ficou com alguma dúvida e precisa de suporte? Clique no botão abaixo.</div>
+      <button class="action-button support-button">
+        <a href="http://telegram.me/magnataoficial" target="_blank" rel="noopener noreferrer">
+          FALAR COM O SUPORTE
+        </a>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function atualizarHorario() {
+      const agora = new Date();
+      const opcoes = {
+        timeZone: 'America/Sao_Paulo',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      };
+      const horarioFormatado = new Intl.DateTimeFormat('pt-BR', opcoes).format(agora);
+      document.getElementById('br-time').textContent = horarioFormatado.replace(',', ' |');
+    }
+
+    function showLoading() {
+      const button = document.getElementById('identifyButton');
+      const buttonText = document.getElementById('button-text');
+      const spinner = document.getElementById('spinner');
+      const statusCircle = document.getElementById('statusCircle');
+      const statusText = document.getElementById('statusText');
+      const nextRoundText = document.getElementById('nextRoundText');
+      const optionalText = document.getElementById('optionalText');
+
+      const galesValue = document.getElementById('galesValue');
+      const apostarValue = document.getElementById('apostarValue');
+      const entradaValue = document.getElementById('entradaValue');
+
+      button.classList.remove("pulsing");
+      button.disabled = true;
+      buttonText.textContent = 'BUSCANDO ENTRADA...';
+      spinner.style.display = 'inline-block';
+
+      statusCircle.style.display = 'none';
+      statusText.style.display = 'none';
+      nextRoundText.style.display = 'none';
+      optionalText.style.display = 'none';
+
+      galesValue.textContent = '';
+      apostarValue.textContent = '';
+      entradaValue.textContent = '';
+
+      setTimeout(() => {
+        const isBlue = Math.random() > 0.5;
+
+        statusCircle.style.display = 'block';
+        statusText.style.display = 'block';
+        nextRoundText.style.display = 'block';
+        optionalText.style.display = 'block';
+
+        if (isBlue) {
+          statusCircle.style.backgroundColor = '#1e90ff';
+          statusText.textContent = 'AZUL';
+          statusText.style.color = '#1e90ff';
+        } else {
+          statusCircle.style.backgroundColor = '#cc1f1a';
+          statusText.textContent = 'VERMELHO';
+          statusText.style.color = '#cc1f1a';
+        }
+
+        let count = 60;
+        buttonText.textContent = `AGUARDE (${count})`;
+        spinner.style.display = 'none';
+
+        const interval = setInterval(() => {
+          count--;
+          buttonText.textContent = `AGUARDE (${count})`;
+          if (count <= 0) {
+            clearInterval(interval);
+            button.disabled = false;
+            buttonText.textContent = '⚡ IDENTIFICAR RESULTADO';
+            button.classList.add("pulsing");
+          }
+        }, 1000);
+      }, 4000);
+    }
+
+    setInterval(atualizarHorario, 1000);
+    atualizarHorario();
+  </script>
+</body>
+</html>
