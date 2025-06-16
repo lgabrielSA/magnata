@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
+// Configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCuZF1y9mSTfW6oRo0UAZ-SDnE4dUkQKZk",
   authDomain: "aplicativo-magnata.firebaseapp.com",
@@ -11,13 +12,18 @@ const firebaseConfig = {
   measurementId: "G-8LGZBWZYWY"
 };
 
+// Inicializa o Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+// Verifica se o usuário está autenticado
 onAuthStateChanged(auth, (user) => {
   if (!user) {
+    // Redireciona para login se não autenticado
     window.location.href = 'login.html';
   } else {
+    // Mostra o conteúdo da página se autenticado
+    document.body.style.visibility = 'visible';
     console.log("Usuário autenticado:", user.email);
   }
 });
