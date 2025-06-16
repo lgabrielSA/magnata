@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+
+        <!-- Parágrafo para exibir a mensagem de erro -->
+        <p id="error-message" style="color: red; display: none;"></p> <!-- Inicialmente oculto -->
+
+    </div>
+
+    <!-- Firebase SDK via CDN -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+
+        // Configuração do Firebase
+        const firebaseConfig = {
+          apiKey: "AIzaSyCuZF1y9mSTfW6oRo0UAZ-SDnE4dUkQKZk",
+          authDomain: "aplicativo-magnata.firebaseapp.com",
+          projectId: "aplicativo-magnata",
+          storageBucket: "aplicativo-magnata.firebasestorage.app",
+          messagingSenderId: "1036873396258",
+          appId: "1:1036873396258:web:4997f5a56c75158db55a7b",
+          measurementId: "G-8LGZBWZYWY"
+        };
+
+        // Inicializa o Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Lógica de login
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log('Usuário logado:', user);
+
+                    // Redireciona para o seu site hospedado no Vercel
+                    window.location.href = 'https://magnata-sable.vercel.app/';
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorElement = document.getElementById('error-message');
+                    
+                    if (errorCode === 'auth/too-many-requests') {
+                        // Caso de erro de muitas tentativas de login
+                        errorElement.textContent = 'Muitas tentativas de login. Tente novamente mais tarde.';
+                    } else {
+                        // Para outros erros de login, como e-mail ou senha incorretos
+                        errorElement.textContent = 'Login incorreto. Tente novamente.';
+                    }
+
+                    errorElement.style.display = 'block'; // Torna a mensagem visível
+
+                    // Log dos erros para depuração (opcional)
+                    console.error('Erro no login:', error);
+                });
+        });
+    </script>
+</body>
+</html>
